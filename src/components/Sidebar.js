@@ -26,12 +26,17 @@ function Sidebar({ isOpen, toggle }) {
                     <SidebarLink to="services" onClick={toggle}>
                         Services
                     </SidebarLink>
-                    <SidebarLink to="login" onClick={toggle}>
-                        Log In
+                    <SidebarLink to="join" onClick={toggle}>
+                        Join Us
                     </SidebarLink>
                 </SidebarMenu>
                 <SidebarBtn>
-                    <SidebarRoute to="signup">
+                    <SidebarRoute to="Login" onClick={toggle}>
+                        Log In
+                    </SidebarRoute>
+                </SidebarBtn>
+                <SidebarBtn>
+                    <SidebarRoute to="SignUp">
                         Sign Up
                     </SidebarRoute>
                 </SidebarBtn>
@@ -109,6 +114,7 @@ const SidebarBtn = styled.div`
     color: #fff;
     display: flex;
     justify-content: center;
+    margin-bottom: 15px;
 `;
 
 const SidebarRoute = styled(LinkR)`

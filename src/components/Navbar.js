@@ -79,7 +79,21 @@ function Navbar({ toggle }) {
                             </NavItem>
                             <NavItem>
                                 <NavLinks
-                                    to="signup"
+                                    to="join"
+                                    smooth={true}
+                                    duration={500}
+                                    spy={true}
+                                    exact='true'
+                                    offset={-80}
+                                >
+                                    Join Our Team
+                                </NavLinks>
+                            </NavItem>
+                        </NavMenu>
+                        <BtnContainer>
+                            <NavBtn>
+                                <NavBtnLink
+                                    to="SignUp"
                                     smooth={true}
                                     duration={500}
                                     spy={true}
@@ -87,26 +101,25 @@ function Navbar({ toggle }) {
                                     offset={-80}
                                 >
                                     Sign Up
-                                </NavLinks>
-                            </NavItem>
-                        </NavMenu>
-                        <NavBtn>
-                            <NavBtnLink
-                                to="Login"
-                                smooth={true}
-                                duration={500}
-                                spy={true}
-                                exact='true'
-                                offset={-80}
-                            >
-                                Sign In
-                            </NavBtnLink>
-                        </NavBtn>
+                                </NavBtnLink>
+                            </NavBtn>
+                            <NavBtn>
+                                <NavBtnLink
+                                    to="Login"
+                                    smooth={true}
+                                    duration={500}
+                                    spy={true}
+                                    exact='true'
+                                    offset={-80}
+                                >
+                                    Sign In
+                                </NavBtnLink>
+                            </NavBtn>
+                        </BtnContainer>
+
                     </NavbarContainer>
                 </Nav>
             </IconContext.Provider>
-
-
         </>
     )
 }
@@ -201,6 +214,12 @@ const NavLinks = styled(LinkS)`
         border-bottom: 3px solid #01bf71;
     }
 
+`;
+
+const BtnContainer = styled.div`
+    display: flex;
+    width: 220px;
+    justify-content: space-between;
 `;
 
 const NavBtn = styled.nav`

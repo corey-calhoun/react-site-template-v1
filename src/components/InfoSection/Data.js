@@ -50,7 +50,7 @@ export const homeObjThree = {
 }
 
 export const homeObjFour = {
-    id: 'signup',
+    id: 'join',
     lightBg: true,
     lightTxt: false,
     lightTxtDesc: false,
