@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Video from '../videos/video.mp4';
 import { MdKeyboardArrowRight, MdArrowForward } from 'react-icons/md';
-import { Link } from 'react-scroll';
+import { Link as LinkR } from 'react-router-dom';
 
 
 function Hero() {
@@ -30,7 +30,7 @@ function Hero() {
                 <HeroDescription>Sign up for a new account today and receive $250 in credit towards your next payment.</HeroDescription>
                 <HeroBtnWrapper>
                     <Button
-                        to="signup"
+                        to="SignUp"
                         onMouseEnter={onHover}
                         onMouseLeave={onHover}
                         primary="true"
@@ -150,7 +150,7 @@ const ArrowRight = styled(MdKeyboardArrowRight)`
     font-size: 20px;
 `;
 
-const Button = styled(Link)`
+const Button = styled(LinkR)`
     border-radius: 50px;
     background: ${({ primary }) => (primary ? '#01bf71' : '#010606')};
     white-space: nowrap;
@@ -164,6 +164,7 @@ const Button = styled(Link)`
     justify-content: center;
     align-items: center;
     transition: all 0.2s ease-in-out;
+    text-decoration: none;
 
     &:hover {
         transition: all 0.2s ease-in-out;

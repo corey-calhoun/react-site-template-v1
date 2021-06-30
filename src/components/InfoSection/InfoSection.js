@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link as LinkR } from 'react-router-dom';
+
 
 function InfoSection({ id, lightBg, imgStart, topLine, lightTxt, darkTxt, headline, description, img, buttonLabel, alt, primary, dark, dark2 }) {
     return (
@@ -16,7 +18,7 @@ function InfoSection({ id, lightBg, imgStart, topLine, lightTxt, darkTxt, headli
                                 <Subtitle darkTxt={darkTxt}>{description}</Subtitle>
                                 <BtnWrap>
                                     <Button
-                                        to="home"
+                                        to="SignUp"
                                         smooth={true}
                                         duration={500}
                                         spy={true}
@@ -87,7 +89,7 @@ const Column1 = styled.div`
 
 `;
 
-const Button = styled.div`
+const Button = styled(LinkR)`
     border-radius: 50px;
     background: ${({ primary }) => (primary ? '#01bf71' : '#010606')};
     white-space: nowrap;
@@ -101,6 +103,7 @@ const Button = styled.div`
     justify-content: center; 
     align-items: center;
     transition: all 0.2s ease-in-out;
+    text-decoration: none;
 
     &:hover {
         transition: all 0.2s ease-in-out;
