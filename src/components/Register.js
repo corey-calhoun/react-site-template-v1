@@ -1,8 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { login } from '../features/userSlice';
+import { auth } from '../firebase';
 
 function Register() {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const dispatch = useDispatch();
+
+
+    const register = () => {
+        if (!name) {
+            return alert('Please enter your name');
+        }
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(userAuth => {
+                userAuth.user.updateProfile({
+                    displayName: name,
+                    // photoUrl: profilePic,
+                })
+                    .then(() => {
+                        dispatch(login({
+                            email: userAuth.user.email,
+                            uid: userAuth.user.uid,
+                            displayName: name,
+                            // photoUrl: profilePic,
+                        }));
+                    });
+            })
+            .catch(error => alert(error));
+    };
+
     return (
         <>
             <Container>
@@ -12,12 +45,30 @@ function Register() {
                         <Form action="#">
                             <FormTitle>Create your free account</FormTitle>
                             <FormLabel htmlFor='for' >Name</FormLabel>
-                            <FormInput type='text' required />
+                            <FormInput
+                                value={name}
+                                onChange={e => setName(e.target.value)}
+                                type="text"
+                                placeholder="Full name (required for registration)"
+                                required
+                            />
                             <FormLabel htmlFor='for' >Email</FormLabel>
-                            <FormInput type='email' required />
+                            <FormInput
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                                type="email"
+                                placeholder="Enter your email address"
+                                required
+                            />
                             <FormLabel htmlFor='for' >Password</FormLabel>
-                            <FormInput type='password' required />
-                            <FormButton type='submit'>Sign In</FormButton>
+                            <FormInput
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                                type="password"
+                                placeholder="Enter your password"
+                                required
+                            />
+                            <FormButton type='submit' onClick={register}>Sign In</FormButton>
                             <Text>Forgot password?</Text>
                         </Form>
                     </FormContent>

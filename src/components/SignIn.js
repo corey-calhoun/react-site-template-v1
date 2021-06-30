@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../features/userSlice'
+import { auth } from '../firebase';
 
 function SignIn() {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+
+    const loginToApp = (e) => {
+        e.preventDefault();
+
+        auth.signInWithEmailAndPassword(email, password)
+            .then(userAuth => {
+                dispatch(login({
+                    email: userAuth.email,
+                    uid: userAuth.user.uid,
+                }))
+            })
+            .catch(error => alert(error));
+    };
+
     return (
         <>
             <Container>
@@ -12,10 +33,22 @@ function SignIn() {
                         <Form action="#">
                             <FormTitle>Sign in to your account</FormTitle>
                             <FormLabel htmlFor='for' >Email</FormLabel>
-                            <FormInput type='email' required />
+                            <FormInput
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                                type="email"
+                                placeholder="Enter your email address"
+                                required
+                            />
                             <FormLabel htmlFor='for' >Password</FormLabel>
-                            <FormInput type='password' required />
-                            <FormButton type='submit'>Sign In</FormButton>
+                            <FormInput
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                                type="password"
+                                placeholder="Enter your password"
+                                required
+                            />
+                            <FormButton type='submit' onClick={loginToApp}>Sign In</FormButton>
                             <Text>Forgot password?</Text>
                         </Form>
                     </FormContent>
