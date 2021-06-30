@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 //icons
 import Icon1 from '../images/savings.png'
-import Icon2 from '../images/online_transactions.png'
+import Icon2 from '../images/crypto_flowers.png'
 import Icon3 from '../images/wallet.png'
 
 function Services() {
@@ -19,7 +19,7 @@ function Services() {
                     </ServicesCard>
                     <ServicesCard>
                         <ServicesIcon src={Icon2} />
-                        <ServicesSubtitle>Virtual Offices</ServicesSubtitle>
+                        <ServicesSubtitle>Crypto Friendly</ServicesSubtitle>
                         <ServicesDescription>You can access our platform online from anywhere in the world.</ServicesDescription>
                     </ServicesCard>
                     <ServicesCard>
